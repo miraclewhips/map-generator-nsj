@@ -164,7 +164,7 @@
 			
 			<div>
 				<span style="display:inline-block; width:120px">Generators: {{ settings.num_of_generators }}</span>
-				<input type="range" v-model.number="settings.num_of_generators" min="1" max="100" />
+				<input type="range" v-model.number="settings.num_of_generators" min="1" max="20" />
 			</div>
 			
 			<Checkbox v-model:checked="settings.oneCountryAtATime" label="Only check one country/polygon at a time." />
@@ -792,7 +792,7 @@ const generate = async (country) => {
     if (!state.started) return;
     country.isProcessing = true;
     const randomCoords = [];
-    const n = Math.min(country.nbNeeded * 10, 10);
+    const n = Math.min(country.nbNeeded * 100, 1000);
     while (randomCoords.length < n) {
       const point = randomPointInPoly(country);
       if (booleanPointInPolygon([point.lng, point.lat], country.feature)) randomCoords.push(point);
